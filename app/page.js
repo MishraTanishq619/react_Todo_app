@@ -21,6 +21,12 @@ const page = () => {
 		// console.log(Arr, arr2, i);
 	};
 
+	let editHandler = (i) => {
+		setTask(`${Arr[i].Task}`);
+		setDesc(`${Arr[i].Desc}`);
+		deleteHandler(i);
+	};
+
 	let items = <li>Nothing here</li>;
 	if (Arr.length) {
 		items = Arr.map((e, k) => {
@@ -31,14 +37,24 @@ const page = () => {
 				>
 					<h2 className="text-3xl">{e.Task}</h2>
 					<h3 className="text-1xl">{e.Desc}</h3>
-					<button
-						onClick={() => {
-							deleteHandler(k);
-						}}
-						className="bg-orange-500 rounded border-2 border-black px-4 py-2"
-					>
-						Delete
-					</button>
+					<div id="btns">
+						<button
+							onClick={() => {
+								editHandler(k);
+							}}
+							className="bg-orange-500 rounded border-2 border-black px-4 py-2 mr-3"
+						>
+							Edit
+						</button>
+						<button
+							onClick={() => {
+								deleteHandler(k);
+							}}
+							className="bg-orange-500 rounded border-2 border-black px-4 py-2"
+						>
+							Delete
+						</button>
+					</div>
 				</li>
 			);
 		});
