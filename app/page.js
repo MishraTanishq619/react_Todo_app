@@ -61,10 +61,10 @@ const page = () => {
 	}
 	return (
 		<>
-			<h1 className="text-center bg-black text-white p-10 text-8xl ">
+			<h1 className="text-center bg-red-700 font-serif font-bold text-white p-10 text-8xl ">
 				Marvel's Coding School
 			</h1>
-			<form onSubmit={submitHandler}>
+			<form onSubmit={submitHandler} className="ml-6">
 				<input
 					type="text"
 					placeholder="Enter Tasks"
@@ -92,6 +92,12 @@ const page = () => {
 			</form>
 			<hr />
 			<div id="list" className="bg-blue-200 w-2/3 mx-auto my-5 p-9">
+				<h1
+					id="task"
+					className="font-extrabold  text-center text-6xl mb-5"
+				>
+					Tasks:
+				</h1>
 				<ul>{items}</ul>
 			</div>
 		</>
