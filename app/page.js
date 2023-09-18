@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
-
+//
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+//
 const page = () => {
 	const [Task, setTask] = useState("");
 	const [Desc, setDesc] = useState("");
@@ -12,19 +15,41 @@ const page = () => {
 		setTask("");
 		setDesc("");
 		// console.log(Arr);
+		toast.success("🦄 Task Added", {
+			position: "top-left",
+			autoClose: 1000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "light",
+		});
 	};
 
-	let deleteHandler = (i) => {
+	let deleteHandler = (i, x) => {
 		var arr2 = [...Arr];
 		arr2.splice(i, 1);
 		setArr(arr2);
 		// console.log(Arr, arr2, i);
+		if (x == 1) {
+			toast.success("🦄 Task Completed!!!", {
+				position: "top-right",
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			});
+		}
 	};
 
 	let editHandler = (i) => {
 		setTask(`${Arr[i].Task}`);
 		setDesc(`${Arr[i].Desc}`);
-		deleteHandler(i);
+		deleteHandler(i, 0);
 	};
 
 	let items = <li>Nothing here</li>;
@@ -48,7 +73,7 @@ const page = () => {
 						</button>
 						<button
 							onClick={() => {
-								deleteHandler(k);
+								deleteHandler(k, 1);
 							}}
 							className="bg-orange-500 rounded border-2 border-black px-4 py-2"
 						>
@@ -61,6 +86,7 @@ const page = () => {
 	}
 	return (
 		<>
+			<ToastContainer />
 			<h1 className="text-center bg-red-700 font-serif font-bold text-white p-10 text-8xl ">
 				Marvel's Coding School
 			</h1>
